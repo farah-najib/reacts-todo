@@ -38,9 +38,8 @@ const TodosPage = () => {
 			{/* Form should validate that a title is entered and at least 2 chars long, ONLY then should the parent's function for creating the todo be called */}
 			{/* <AddTodoForm onAddTodo={createTodo} /> */}
 
-			<SuccessMessage heading="Such success">
-				<p>Very good</p>
-				<p>Much progress</p>
+			<SuccessMessage heading="success Message">
+				<p>you can add note</p>
 			</SuccessMessage>
 
 			{isLoading && <PacmanLoader size={30} color="#f00" speedMultiplier={1.25} />}
