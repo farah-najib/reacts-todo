@@ -5,7 +5,10 @@ import axios from "axios";
 import type { CreateTodoPayload, Todo, UpdateTodoPayload } from "./TodoAPI.types";
 
 const baseURL = import.meta.env.VITE_API_BASEURL as string || "http://localhost:3000";
-const FAKE_DELAY = 1500;
+const FAKE_DELAY = 60000 ; // one minute
+// Why Add a Fake Delay?
+// Imagine you're developing an app that loads data from the server. You want to make sure that your app shows a loading spinner or some message while waiting for the server to respond. However, if your server is super fast, you may not be able to see what happens when there's a real delay.
+// So, you add a fake delay to simulate that slow network or server, allowing you to see how the app handles it (e.g., if the loading spinner shows properly).
 
 // Create a new axios instance
 const instance = axios.create({
@@ -28,8 +31,8 @@ const get = async <T>(endpoint: string) => {
 
 	// Fake slow API
 	if (FAKE_DELAY) {
-		await new Promise(r => setTimeout(r, FAKE_DELAY));
-	}
+        await new Promise((r) => setTimeout(r, FAKE_DELAY)) //r is shorthand for resolve
+    }
 
 	return response.data;
 }
@@ -53,12 +56,14 @@ export const getTodos = async () => {
 }
 
 /**
- * Get todo from API using axios
+ * Get todo from API by id
  */
 export const getTodo = async (id: number) => {
 	return get("/todos/" + id);
 }
-
+export const getTodoname = async (title: string) => {
+     return get(`/todos?title=${encodeURIComponent(title)}`)
+}
 /**
  * Create a new todo in the API
  */
