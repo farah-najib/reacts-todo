@@ -1,5 +1,8 @@
+import Button from 'react-bootstrap/Button'
+import useTheme from '../hooks/useTheme'
 const HomePage = () => {
-	return (
+     const { isDarkMode, toggleTheme } = useTheme();
+    return (
         <>
             <h1>Welcome to Better Todos!</h1>
 
@@ -10,6 +13,9 @@ const HomePage = () => {
                 you’ll end up getting all that you planned done simply because
                 it’s part of your to-do list for the day.”
             </p>
+            <Button onClick={toggleTheme} variant="primary">
+                Toggle theme
+            </Button>
         </>
     )
 }
